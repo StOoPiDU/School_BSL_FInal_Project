@@ -35,8 +35,8 @@
         <?php if(isset($_SESSION['admin'])): ?>
             <a href="logout.php">Logout</a>
         <?php endif ?>
-        <?php if(isset($_SESSION['admin'])): ?>
-            <a href="signup.php">Signup</a>
+        <?php if(!isset($_SESSION['admin'])): ?>
+            <a href="signup.php">Register</a>
         <?php endif ?>
         <?php if(isset($_GET['success'])): ?>
             <h3>Hello <?= $username?></h3>
