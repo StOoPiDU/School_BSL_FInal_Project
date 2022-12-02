@@ -25,6 +25,16 @@
 </head>
 <body>
     <div id="wrapper">
+        <?php if(!isset($_SESSION['admin'])): ?>
+            <a href="login.php">Login</a>
+        <?php endif ?>
+        <?php if(isset($_SESSION['admin'])): ?>
+        <a href="logout.php">Logout</a>
+        <?php endif ?>
+        <?php if(isset($_SESSION['admin'])): ?>
+        <a href="signup.php">Signup</a>
+        <?php endif ?>
+
         <div id="header">
             <h1><a href="index.php">Best Soccer League</a></h1>
             <h2>The greatest 6v6 Footy League in the world!</h2>
