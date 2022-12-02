@@ -3,7 +3,7 @@
  * Final Project - Best Soccer League
  * Name: Cedric Pereira
  * Start Date: November 11, 2022
- * Description: Connect page for the Project
+ * Description: Connect page for the Project (Doubles as a Session pages)
  */
      define('DB_DSN','mysql:host=localhost;dbname=best_soccer_league;charset=utf8');
      define('DB_USER','serveruser');
@@ -54,7 +54,7 @@
          $_SESSION['username'] = $row['username'];
          if($row['admin'] = 1)
          {
-            
+            $_Session['admin'] = true;
          }
       }
  ?>
