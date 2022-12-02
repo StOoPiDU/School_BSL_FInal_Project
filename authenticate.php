@@ -1,11 +1,13 @@
 <?php 
 /*
- * Assignment 3
+ * Final Project - Best Soccer League
  * Name: Cedric Pereira
  * Date: November 17, 2022
  * Description: Authentication page for Final Project
  */
-  define('ADMIN_LOGIN','wally'); 
+  
+ 
+ define('ADMIN_LOGIN','wally'); 
   define('ADMIN_PASSWORD','mypass'); 
 
   if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) 
