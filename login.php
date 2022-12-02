@@ -12,7 +12,50 @@ $errorMessage = '';
 
 if(!isset($_GET['signup']))
 {
+    if(isset($_POST['username']))
+    {
 
+
+
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+        if(isset($username) && isset($password))
+        {
+            $query = "SELECT user_id, admin, username, password FROM user WHERE active=1 AND username ='$username'";
+    
+            $statement = $db->prepare($query);
+            $statement->execute();
+            $row = $statement->fetch();
+    
+            if($statement->rowCount() != 0)
+            {
+                $dbPassword = $row['password'];
+                if(password_verify($password, $dbPassword))
+                {
+                    $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['admin'] = $row['admin'];
+                    header("Location:index.php?success=yes");
+                }
+                else
+                {
+                    $errormsg="Incorrect Password!";
+                }
+            }
+            else
+            {
+                $errormsg="Account disabled or does not exist!";
+            }
+    
+        }
+        else
+        {
+            $errormsg="Account and/or Password not entered!";
+        }
+
+
+    }
 }
 else
 {
@@ -30,6 +73,7 @@ else
     {
         $errorMessage = "Please enter your details";
     }
+    
 }
 ?>
 
@@ -69,7 +113,10 @@ else
     </script>
 </head>
 <body>
-    <form action="login_process.php" method="POST">
+<?php if(isset($errormsg)){ ?>
+    <p><?=$errormsg?></p>
+<?php } ?>
+    <form action="#" method="POST">
     <input type="text" class="form-control" name="username" placeholder="username" id="username">
     <input type="password" class="form-control" name="password" placeholder="password" id="password">
 
@@ -79,6 +126,6 @@ else
     <button type="submit" value="login" onclick="return valid()">Login</button>
     </form>
     <a href="index.php">Home</a>
-    <a href="signup.php">Sign up</a>
+    <a href="signup.php">Register</a>
 </body>
 </html>

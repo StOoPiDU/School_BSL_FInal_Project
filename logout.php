@@ -5,9 +5,7 @@
  * Date: November 17, 2022
  * Description: Logout page for Final Project
  */
-$_SESSION = [];
+session_start();
 session_destroy();
-//$_SESSION = array();
-//$_SESSION = array(); :((((((((((((((((((((
 header("location:index.php");
 ?>
