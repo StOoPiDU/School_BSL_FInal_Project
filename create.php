@@ -5,7 +5,7 @@
  * Date: November 11, 2022
  * Description: Adding a player for the database
  */
-    require_once('authenticate.php'); 
+    //require_once('authenticate.php'); 
     require_once('connect.php');
     $failed = false;
 
@@ -59,6 +59,8 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <?php if (isset($_SESSION['admin'])):?>
+
     <div id="wrapper">
         
         <form method ="post" action="search.php">
@@ -111,6 +113,14 @@
                 <h1>You botched it.</h1>
             <?php endif ?>
         </div>
+
+        <?php else:?>
+            <h2>You have to be logged in to do this.</h2>
+            <a href="login.php">Login</a>
+            <a href="signup.php">Sign up</a>
+        <?php endif?>
+
+
         <div id="footer"> Copyright YadaYada - Please Give Me 100% Marks :D</div>
     </div>
 </body>
