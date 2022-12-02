@@ -31,7 +31,7 @@
         }
         else
         {
-            //$player_id = filter_input(INPUT_POST, 'player_id', FILTER_SANITIZE_NUMBER_INT); Okay, this causes it to break.
+            $player_id = filter_input(INPUT_POST, 'player_id', FILTER_SANITIZE_NUMBER_INT);
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $comment = filter_input(INPUT_POST,'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $name = filter_input(INPUT_POST,'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -45,6 +45,7 @@
             $statement->bindValue(':name', $name);
             $statement->execute();
             $fetch = $statement->fetch();
+            unset($_SESSION['code']);
             header("Location:view.php?player_id=$player_id");
         }
     }
@@ -81,6 +82,7 @@
             <input type="text" name="name">
         </li>
         <li>
+            <input type="hidden" name="player_id" value="<?=$_GET['player_id']?>" />
             <button type="submit">Submit Comment</button>
         </li>
     </ul>
