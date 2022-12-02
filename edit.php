@@ -5,7 +5,7 @@
  * Date: November 11, 2022
  * Description: Editing a player
  */
-    require_once('authenticate.php');
+    //require_once('authenticate.php');
     require_once('connect.php');
     $failed = false;
      
@@ -79,6 +79,8 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <?php if (isset($_SESSION['admin'])):?>
+
     <div id="wrapper">
 
         <form method ="post" action="search.php">
@@ -132,6 +134,13 @@
         <?php if($failed): ?>
             <h1>You botched it.</h1>
         <?php endif ?>
+
+        <?php else:?>
+            <h2>You have to be logged in to do this.</h2>
+            <a href="login.php">Login</a>
+            <a href="signup.php">Sign up</a>
+        <?php endif?>
+        
         <div id="footer"> Copywrong 2022 - No Rights Reserved</div>
     </div>
 </body>
