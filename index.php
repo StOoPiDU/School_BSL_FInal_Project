@@ -7,14 +7,18 @@
  */
     require_once('connect.php');
     
-     // SQL is written as a String.
-     $query = "SELECT * FROM player WHERE post_is_active = 1 ORDER BY player_id DESC LIMIT 5";
+    if(isset($_SESSION['admin']))
+    {
+        $admin = $_SESSION['admin'];
+    }
 
-     // A PDO::Statement is prepared from the query.
-     $statement = $db->prepare($query);
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+    }
 
-     // Execution on the DB server is delayed until we execute().
-     $statement->execute(); 
+    $query = "SELECT * FROM player WHERE post_is_active = 1 ORDER BY player_id DESC LIMIT 5";
+    $statement = $db->prepare($query);
+    $statement->execute(); 
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +33,15 @@
             <a href="login.php">Login</a>
         <?php endif ?>
         <?php if(isset($_SESSION['admin'])): ?>
-        <a href="logout.php">Logout</a>
+            <a href="logout.php">Logout</a>
         <?php endif ?>
         <?php if(isset($_SESSION['admin'])): ?>
-        <a href="signup.php">Signup</a>
+            <a href="signup.php">Signup</a>
         <?php endif ?>
+        <?php if(isset($_GET['success'])): ?>
+            <h3>Hello <?= $username?></h3>
+        <?php endif ?>
+
 
         <div id="header">
             <h1><a href="index.php">Best Soccer League</a></h1>
