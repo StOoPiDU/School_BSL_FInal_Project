@@ -5,7 +5,7 @@
  * Date: November 27, 2022
  * Description: Adding a comment to a player.
  */
-    require_once('authenticate.php'); 
+    //require_once('authenticate.php'); 
     require_once('connect.php');
 
     if (isset($_GET['player_id'])) 
