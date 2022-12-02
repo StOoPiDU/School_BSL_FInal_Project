@@ -11,13 +11,15 @@
     {
         $selectedTeam = $_GET['team_id'];
 
-        $query = "SELECT * FROM player WHERE post_is_active = 1 && team_id = $selectedTeam ORDER BY player_id DESC";
+        $query = "SELECT * FROM player WHERE post_is_active = 1 AND team_id = :team_id ORDER BY player_id DESC";
         $statement = $db->prepare($query);
+        $statement->bindValue(":team_id",$selectedTeam);
         $statement->execute(); 
 
         // This could have been accomplished with a join, but I'm incompetent. 
-        $query2 = "SELECT * FROM teams WHERE team_id = $selectedTeam";
+        $query2 = "SELECT * FROM teams WHERE team_id = :team_id";
         $statement2 = $db->prepare($query2);
+        $statement2->bindValue(":team_id",$selectedTeam);
         $statement2->execute(); 
         $value = $statement2->fetch();
     }
