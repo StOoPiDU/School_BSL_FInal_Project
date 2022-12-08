@@ -29,13 +29,13 @@
 </head>
 <body>
     <div id="wrapper">
-        <?php if(!isset($_SESSION['admin'])): ?>
+        <?php if(!isset($_SESSION['username'])): ?>
             <a href="login.php">Login</a>
         <?php endif ?>
-        <?php if(isset($_SESSION['admin'])): ?>
+        <?php if(isset($_SESSION['username'])): ?>
             <a href="logout.php">Logout</a>
         <?php endif ?>
-        <?php if(!isset($_SESSION['admin'])): ?>
+        <?php if(!isset($_SESSION['username'])): ?>
             <a href="signup.php">Register</a>
         <?php endif ?>
         <?php if(isset($_GET['success'])): ?>

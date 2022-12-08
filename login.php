@@ -35,7 +35,7 @@ if(!isset($_GET['signup']))
                 {
                     $_SESSION['user_id'] = $row['user_id'];
                     $_SESSION['username'] = $row['username'];
-                    $_SESSION['admin'] = $row['admin'];
+                    if($row['admin'] > 0) { $_SESSION['admin'] = "admin"; }
                     header("Location:index.php?success=yes");
                 }
                 else
