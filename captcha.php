@@ -1,4 +1,11 @@
 <?php
+/*
+ * Final Project - Best Soccer League
+ * Name: Cedric Pereira
+ * Start Date: November 28, 2022
+ * Description: Captcha code for the comment(s) thanks PHPJabbers!
+ */
+require_once('connect.php');
 $code=rand(1000,9999);
 $_SESSION['code']=$code;
 $im = imagecreatetruecolor(50, 24);

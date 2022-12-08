@@ -50,9 +50,8 @@
         }
     }
 
-    // <?php echo $player_id;
+    //<?php echo $player_id;   
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
