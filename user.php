@@ -6,8 +6,8 @@
  * Description: User page with permission adjustments by admin.
  */
     require_once('connect.php');
-
-    $query = "SELECT * FROM user";
+    
+    $query = "SELECT * FROM user WHERE active = 1 ORDER BY user_id ASC";
     $statement = $db->prepare($query);
     $statement->execute();
 ?>
@@ -37,11 +37,15 @@
         <?php endif ?>
         <h2><?=$row['username']?></h2>
         <?php if($admin):?>
-            <h3>User is admin</h3>
+            <h3>User is an admin</h3>
         <?php else:?>
-            <h3>User is not admin</h3>
+            <h3>User is not an admin</h3>
+            <a href="user_delete.php?user_id=<?=$row['user_id']?>">Delete</a>
+            <a href="user_authorize.php?user_id=<?=$row['user_id']?>">Authorize</a>
         <?php endif ?>
     <?php endwhile ?>
+
+
     <a href="index.php">Home</a>
 </body>
 </html>

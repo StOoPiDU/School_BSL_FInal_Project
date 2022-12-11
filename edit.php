@@ -35,7 +35,7 @@
             $statement->bindValue(':nationality', $nationality);
             $statement->bindValue(':team_id', $team_id);
             
-            // Execute the INSERT.
+            // Execute the UPDATE.
             $statement->execute();
             
             // Redirect after edit.
@@ -136,9 +136,10 @@
         <?php endif ?>
 
         <?php else:?>
-            <h2>You have to be logged in to do this.</h2>
+            <h2>You have to be an logged in (as admin) to do this.</h2>
             <a href="login.php">Login</a>
             <a href="signup.php">Sign up</a>
+            <a href="index.php">Home</a>
         <?php endif?>
         
         <div id="footer"> Copywrong 2022 - No Rights Reserved</div>

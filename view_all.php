@@ -8,7 +8,7 @@
     require_once('connect.php');
     
      // SQL is written as a String.
-     $query = "SELECT * FROM player WHERE post_is_active = 1 ORDER BY player_id DESC";
+     $query = "SELECT * FROM player INNER JOIN teams on player.team_id = teams.team_id WHERE post_is_active = 1 ORDER BY player_id DESC";
 
      // A PDO::Statement is prepared from the query.
      $statement = $db->prepare($query);
@@ -53,7 +53,7 @@
                     <h2><a href="view.php?player_id=<?= $row['player_id'] ?>"><?= $row['first_name']?> <?=$row['last_name']?></a></h2>
                     <h3><?=$row['position']?></h3>
                     <h3><?=$row['nationality']?></h3>
-                    <h3><?=$row['team_id']?></h3>
+                    <h3><?=$row['team_name']?></h3>
                     <p><small><a href="edit.php?player_id=<?= $row['player_id'] ?>">Edit Player</a></small></p>
                 </div>
                 <?php endwhile ?> 
